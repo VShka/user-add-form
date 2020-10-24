@@ -167,6 +167,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="sass" scoped>
+  input, select
+    margin-left: 10px
 </style>
