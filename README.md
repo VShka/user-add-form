@@ -3,6 +3,7 @@
 ## Стек:
 - Vue.js
 - Vuelidate
+- HTML
 - Sass
 
 ## Попробовать => https://vshka.github.io/user-add-form/
