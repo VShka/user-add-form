@@ -1,19 +1,10 @@
 # user-add-form
 
-## Project setup
-```
-yarn install
-```
+## Стек:
+- Vue.js
+- Vuelidate
+- Sass
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Попробовать => https://vshka.github.io/user-add-form/
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## В данный момент можно только посмотреть и пощупать UI/UX оформление. Валидация формы в разработке...
