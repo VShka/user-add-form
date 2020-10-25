@@ -26,8 +26,12 @@
               :class="{form__item_error: $v.firstName.$error}"
             >
             <br />
-            <small class="error-text" v-if="!$v.firstName.required && $v.firstName.$dirty">Введите фамилию</small>
-            <small class="error-text" v-else-if="!$v.firstName.minLength">Не менее 2 символов</small>
+            <small
+              class="error-text"
+              v-if="$v.firstName.$dirty && !$v.firstName.required"
+            >
+              Необходимо заполнить
+            </small>
           </p>
 
           <p class="form__field">
@@ -41,8 +45,15 @@
               type="text"
               id="second-name"
               name="second-name"
-              v-model.trim="secondName"
+              v-model.trim="$v.secondName.$model"
+              :class="{form__item_error: $v.secondName.$error}"
             >
+            <small
+              class="error-text"
+              v-if="!$v.secondName.required && $v.secondName.$dirty"
+            >
+              Необходимо заполнить
+            </small>
           </p>
 
           <p class="form__field">
@@ -55,8 +66,8 @@
               type="text"
               id="patronymic"
               name="patronymic"
-              v-model.trim="patronymic"
             >
+            <br />
           </p>
 
           <p class="form__field">
@@ -66,12 +77,27 @@
             </label>
             <br />
             <input
-              class="form__item form__item-date"
-              type="date"
+              class="form__item"
+              type="text"
+              value=""
               id="birthday"
               name="birthday"
-              v-model="birthday"
+              v-model.trim="$v.birthday.$model"
+              :class="{form__item_error: $v.birthday.$error}"
             >
+            <br />
+            <small
+              class="error-text"
+              v-if="!$v.birthday.required && $v.birthday.$dirty"
+            >
+              Укажите дату
+            </small>
+            <small
+              class="error-text"
+              v-else-if="!$v.birthday.dateFormat"
+            >
+              Формат даты ДД.ММ.ГГГГ
+            </small>
           </p>
 
           <p class="form__field">
@@ -85,8 +111,28 @@
               type="tel"
               id="phone"
               name="phone"
-              v-model="phone"
+              v-model.trim="$v.phone.$model"
+              :class="{form__item_error: $v.phone.$error}"
             >
+            <br />
+            <small
+              class="error-text"
+              v-if="!$v.phone.required && $v.phone.$dirty"
+            >
+              Необходимо заполнить
+            </small>
+            <small
+              class="error-text"
+              v-else-if="!$v.phone.startWith"
+            >
+              Должен начинаться с 7
+            </small>
+            <small
+              class="error-text"
+              v-else-if="!$v.phone.phoneLenght"
+            >
+              Должно быть 11 цифр
+            </small>
           </p>
 
           <p class="form__field">
@@ -99,7 +145,6 @@
               type="text"
               id="sex"
               name="sex"
-              v-model.trim="sex"
             >
           </p>
 
@@ -132,7 +177,6 @@
               class="form__item form__item-doctor"
               id="doctor"
               name="doctor"
-              v-model="doctor"
             >
               <option value="none" hidden="">Выберите</option>
               <option value="Иванов">Иванов</option>
@@ -150,7 +194,6 @@
               type="checkbox"
               id="informing"
               name="informing"
-              v-model="informing"
             >
           </p>
 
@@ -172,7 +215,6 @@
               type="text"
               id="index"
               name="index"
-              v-model="index"
             >
           </p>
 
@@ -186,7 +228,6 @@
               type="text"
               id="country"
               name="country"
-              v-model="country"
             >
           </p>
 
@@ -200,7 +241,6 @@
               type="text"
               id="region"
               name="region"
-              v-model="region"
             >
           </p>
 
@@ -215,8 +255,16 @@
               type="text"
               id="city"
               name="city"
-              v-model="city"
+              v-model.trim="$v.city.$model"
+              :class="{form__item_error: $v.city.$error}"
             >
+            <br />
+            <small
+              class="error-text"
+              v-if="$v.city.$dirty && !$v.city.required"
+            >
+              Необходимо заполнить
+            </small>
           </p>
 
           <p class="form__field">
@@ -229,7 +277,6 @@
               type="text"
               id="street"
               name="street"
-              v-model="street"
             >
           </p>
 
@@ -243,7 +290,6 @@
               type="text"
               id="house"
               name="house"
-              v-model="house"
             >
           </p>
 
@@ -264,7 +310,6 @@
               class="form__item form__item-doctor"
               id="document"
               name="document"
-              v-model="document"
             >
               <option value="Паспорт">Паспорт</option>
               <option value="Свидетельство о рождении">Свидетельство о рождении</option>
@@ -282,7 +327,6 @@
               type="text"
               id="series"
               name="series"
-              v-model="series"
             >
           </p>
 
@@ -296,7 +340,6 @@
               type="text"
               id="number"
               name="number"
-              v-model="number"
             >
           </p>
 
@@ -310,7 +353,6 @@
               type="text"
               id="agency"
               name="agency"
-              v-model="agency"
             >
           </p>
 
@@ -321,12 +363,26 @@
             </label>
             <br />
             <input
-              class="form__item form__item-date"
-              type="date"
+              class="form__item"
+              type="text"
               id="date"
               name="date"
-              v-model="date"
+              v-model.trim="$v.date.$model"
+              :class="{form__item_error: $v.date.$error}"
             >
+            <br />
+            <small
+              class="error-text"
+              v-if="$v.date.$dirty && !$v.date.required"
+            >
+              Необходимо заполнить
+            </small>
+            <small
+              class="error-text"
+              v-else-if="!$v.date.dateFormat"
+            >
+              Формат даты ДД.ММ.ГГГГ
+            </small>
           </p>
 
         </div>
@@ -337,58 +393,44 @@
 </template>
 
 <script>
-import {required, minLength, maxLength, numeric, between} from 'vuelidate/lib/validators';
+import {required, helpers} from 'vuelidate/lib/validators';
 export default {
-name: 'form',
-data: () => ({
-  firstName: null,
-  secondName: null,
-  patronymic: null,
-  birthday: null,
-  phone: null,
-  sex: null,
-  groupClient: [],
-  doctor: null,
-  informing: null,
-  index: null,
-  country: null,
-  region: null,
-  city: null,
-  street: null,
-  house: null,
-  document: null,
-  series: null,
-  number: null,
-  agency: null,
-  date: null
-}),
-validations: {
-  firstName: {required, minLength: minLength(2)},
-  secondName: {required},
-  patronymic: {},
-  birthday: {required},
-  phone: {required, numeric, minLength: minLength(11), maxLength: maxLength(11)},
-  sex: {between: between('мужской', 'женский')},
-  groupClient: {required},
-  doctor: {},
-  informing: {},
-  index: {},
-  country: {},
-  region: {},
-  city: {required},
-  street: {},
-  house: {},
-  document: {required},
-  series: {},
-  number: {},
-  agency: {},
-  date: {required}
-},
-methods: {
-  addUser() {
-    alert('Пациент добавлен успешно');
+  name: 'form',
+  data: () => ({
+    firstName: null,
+    secondName: null,
+    birthday: null,
+    phone: null,
+    groupClient: [],
+    city: null,
+    document: null,
+    date: null
+  }),
+  validations: {
+    firstName: {required},
+    secondName: {required},
+    birthday: {
+      required,
+      dateFormat: helpers.regex('dateFormat', /(0\d|1\d|2\d|3[0-1])(\.)(0\d|1[0-2])(\.)(\d{4})/)
+    },
+    phone: {
+      required,
+      startWith: helpers.regex('startWith', /^7/),
+      phoneLenght: helpers.regex('phoneLength', /(\d{11})/)
+    },
+    groupClient: {required},
+    city: {required},
+    document: {required},
+    date: {
+      required,
+      dateFormat: helpers.regex('dateFormat', /(0\d|1\d|2\d|3[0-1])(\.)(0\d|1[0-2])(\.)(\d{4})/)
+    }
+  },
+  methods: {
+    addUser() {
+      alert('Пациент добавлен успешно');
+    }
   }
-}
 }
 </script>
 
@@ -428,9 +470,6 @@ methods: {
       &:focus 
         outline: none
         box-shadow: 0 0 10px rgb(141, 141, 138)
-
-    .form__item-date
-      padding: .38rem 1rem
 
     .form__item-group
       padding: 0 1rem
